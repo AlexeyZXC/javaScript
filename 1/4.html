@@ -28,7 +28,16 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  let a,s,d,e;
+  a = prompt("please enter a number");
+
+  e=a%10;
+  d=(a-e)%100/10;
+  s=(a-d*10-e)/100;
+
+  let res = `В числе ${a} количество сотен: ${s}, десятков: ${d}, единиц: ${e}`;
+
+  alert(res);
 </script>
 </body>
 </html>
