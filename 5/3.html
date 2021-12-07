@@ -56,6 +56,9 @@
   1. Необходимо вывести сообщение в консоль "все теги прогрузились", когда все
   теги будут созданы браузером.
   */
+  document.addEventListener("DOMContentLoaded", ()=>{
+    console.log('все теги прогрузились');
+  })
 
 
   /*
@@ -63,6 +66,9 @@
   ресурсы страницы будут загружены.
   */
 
+  window.addEventListener("load", ()=>{
+    console.log('страница загрузилась');
+  })
 
   /*
   3. При клике на какой-либо тег на странице в консоль должно выводиться
@@ -73,12 +79,23 @@
   которому был совершен клик.
   */
 
+  document.addEventListener("click", (ev)=>{
+    if(ev.target.classList.contains('super_element')){
+      console.log(`Класс "super_element" присутствует в элементе ${ev.target.tagName.toLowerCase()}.`);
+    } else {
+      console.log(`Класс "super_element" отсутствует в элементе ${ev.target.tagName.toLowerCase()}.`);
+    }
+  })
 
   /*
   4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение:
   "Вы навели на textarea."
    */
 
+   const ta = document.querySelector('textarea');
+   ta.addEventListener('mouseenter', ()=>{
+     console.log('Вы навели на textarea.');
+   })
 
   /*
   5. Необходимо повесить событие клика на тег ul. В обработчике события в
@@ -87,6 +104,11 @@
   Если клик был не по кнопке, то ничего выводить не нужно.
    */
 
+   const ul = document.querySelector('ul');
+   ul.addEventListener('click', (ev)=>{
+     ev.target.tagName === 'BUTTON' ? console.log(ev.target.innerText) : 0;
+   })
+
 
   /*
   6. Вопрос: Почему в console.log пишется сначала текст из 5 задания и только
@@ -94,10 +116,16 @@
   Ответ необходимо написать здесь же, под этим комментарием, своими словами.
   */
 
+  // Событие "всплывает" начиная с ul поскольку кнопка, по которой кликаем находится в этом списке
 
   /*
   7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
    */
+
+   document.querySelectorAll('li:nth-child(2n)').forEach((el)=>{
+     el.setAttribute('style', 'background-color:red')
+    console.log(el);
+   })
 
 </script>
 </body>
