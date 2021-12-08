@@ -38,11 +38,58 @@
   golden, также такой класс должен ставиться всем звездам до нее слева.
   */
 
+  document.querySelectorAll('.fas').forEach(el=>{
+    el.addEventListener('mouseover', event=>{
+      let firedOffset = event.target.offsetLeft;
+      document.querySelectorAll('.fas').forEach(el2=>{
+        if(el2.offsetLeft <= firedOffset){
+          el2.classList.add('golden')
+        }
+      })
+    })
+  })
 
   /*
   2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
   задания должны быть удалены.
    */
+
+  //  document.querySelector('.stars_container').addEventListener('mouseout', ()=>{
+  //   document.querySelectorAll('.fas').forEach(el2=>{
+  //     el2.classList.remove('golden');
+  //   })
+  //  })
+
+   document.querySelectorAll('.fas').forEach(el=>{
+      el.addEventListener('mousemove', event=>{
+      let divX = document.querySelector('.stars_container').getClientRects()[0].x+10;
+      let divY = document.querySelector('.stars_container').getClientRects()[0].y+10;
+      let divWitdth = document.querySelector('.stars_container').getClientRects()[0].width-10;
+      let divHeight = document.querySelector('.stars_container').getClientRects()[0].height-10;
+
+      // console.log(`rect x: ${divX}, ${divX + divWitdth}` )
+      // console.log(`rect y: ${divY}, ${divY + divHeight}` )
+
+      let within = false;
+
+      if(event.x > divX  && event.x < divX + divWitdth && event.y > divY && event.y < divY + divHeight){
+        within = true;
+      }
+      let firedOffset = event.target.offsetLeft;
+
+      //console.log('within = '+within);
+
+      document.querySelectorAll('.fas').forEach(el2=>{
+        if(within === false){
+          el2.classList.remove('golden');
+        } else {
+          if(el2.offsetLeft > firedOffset){
+          el2.classList.remove('golden');
+          }
+        }
+      })
+    })
+  })
 
 
   /*
@@ -51,6 +98,8 @@
   Можем ли мы это исправить? Если да, то предложите решение.
   */
 
+  // Звезды перестали мигать. А вот с тем чтобы убрать все звезды должен был помочь mouseout для stars_container но он срабатывает 
+  //даже при перемещениях мыши внутри div.
 
 </script>
 </body>
