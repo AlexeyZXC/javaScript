@@ -60,6 +60,21 @@
     H99: "Однако, программирование, в итоге, принесет свои плоды.",
   };
 
+  const textEl = document.querySelector('.text');
+
+  document.querySelector('.nav-tabs')
+  .addEventListener('click',event=>{
+    const tabs = document.querySelector('.nav-tabs');
+     for (const child of tabs.children) {
+       if(event.target === child.children[0]){
+         child.children[0].classList.add('active');
+         textEl.innerText = panelText[child.dataset.text];
+       } else {
+         child.children[0].classList.remove('active');
+       }
+     }
+    });
+
 
   /*
   2. Необходимо сделать так, чтобы при изменении input'а менялся и размер шрифта
@@ -68,7 +83,19 @@
   перетаскивании ползунка.
    */
 
+  const inputDivEl = document.querySelector('#inputDiv');
+  const inputEl = document.querySelector('input');
 
+  let prevTextValue = +window.getComputedStyle(inputDivEl).fontSize.substr(0,2);
+  let prevInputValue = +inputEl.value;
+
+   document.querySelector('input').addEventListener('input', ()=>{
+     let newSize = (prevTextValue + +inputEl.value - +prevInputValue).toString();
+     inputDivEl.style.fontSize = newSize + 'px';
+     prevInputValue = +inputEl.value;
+     prevTextValue = Number(newSize);
+   })
+   
 </script>
 </body>
 </html>

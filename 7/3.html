@@ -25,9 +25,11 @@
    * параметр "n"
    */
   function descendingOrder(n) {
-
+    let str = n.toString();
+    str = str.split('').sort((e1, e2)=>{return e1 > e2 ? -1 : 1});
+    str = str.join('');
+    return Number.parseInt(str);
   }
-
   console.log(descendingOrder(42145)); // 54421
   console.log(descendingOrder(145263)); // 654321
   console.log(descendingOrder(123456789)); // 987654321
